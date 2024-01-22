@@ -1,12 +1,9 @@
 # Rust-NoSteam
-Discord: https://discord.gg/Tn3kzbE
+Discord: sensais
 
 ## ⭐ » Donations
-- https://www.buymeacoffee.com/kaidoz
-- https://boosty.to/kaidoz/single-payment/donation/29238
-- https://qiwi.com/n/KAIDOZ
-- VISA: 4279380632007755
-- BTC: 1DNEbR5Yk6a6NXDuQHB2XGAAjaqL8NXvUc
+- https://qiwi.com/n/SENSAIS
+- USDT Tether 0xEa402B237b92271A1EBe9A1011Eb42492228D61E
 
 ## 📝️ » Information
 - Check every player for fake steamid or other something(100% protection)
