@@ -164,7 +164,8 @@ namespace Oxide.Ext.NoSteam.Patches
                 var connections = ConnectionAuth.m_AuthConnection;
                 var connection = connections.First(x => x.userid == userId);
 
-                connection.authStatus = "ok";
+                //connection.authStatusEAC= "ok";
+                //connection.authStatusSteam = "ok";
 
                 __result = true;
 
