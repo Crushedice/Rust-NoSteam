@@ -164,9 +164,10 @@ namespace Oxide.Ext.NoSteam.Patches
                 var connections = ConnectionAuth.m_AuthConnection;
                 var connection = connections.First(x => x.userid == userId);
 
-                connection.authStatusCentralizedBans = "ok";
                 connection.authStatusSteam = "ok";
-
+                connection.authStatusNexus = "ok";
+                connection.authStatusEAC = "ok";
+                connection.authStatusCentralizedBans = "ok";
                 __result = true;
 
                 object reason = Interface.CallHook("OnBeginPlayerSession", connection, IsLicense);
