@@ -46,13 +46,9 @@ namespace Oxide.Ext.NoSteam.Language
 
         private static void ParseMessages()
         {
-            MessagesList.Add(new Message(nameof(Messages.AdvertMessage), "Это сообщение видят только пираты. \nСервер использует NoSteam by Kaidoz. \n" +
-                    "Discord: discord.gg/Tn3kzbE\n" +
-                    "Лаунчер: discord.gg/qxZwR8zDPu\n",
+            MessagesList.Add(new Message(nameof(Messages.AdvertMessage), "Это сообщение видят только пираты. \nСервер использует NoSteam fork by I4IGO. \n",
 
-                    "This msg see only cracked players. \nServer uses NoSteam by Kaidoz. \n" +
-                    "Discord: discord.gg/Tn3kzbE\n" +
-                    "Launcher: discord.gg/qxZwR8zDPu\n"));
+                    "This msg see only cracked players. \nServer uses NoSteam fork by I4IGO. \n"));
         }
 
         internal class Message
