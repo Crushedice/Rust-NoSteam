@@ -21,28 +21,28 @@ namespace Oxide.Ext.NoSteam.Patches
         }
 
 
-        [HarmonyPatch(typeof(ServerMgr), nameof(ServerMgr.GamemodeName))]
-        internal static class UpdateServerInformationPatch
-        {
-            [HarmonyPostfix]
-            public static void Postfix(ref string __result)
-            {
-                int count = Core.CountSteamPlayer();
+        //[HarmonyPatch(typeof(ServerMgr), nameof(ServerMgr.GamemodeName))]
+        //internal static class UpdateServerInformationPatch
+        //{
+        //    [HarmonyPostfix]
+        //    public static void Postfix(ref string __result)
+        //    {
+        //        int count = Core.CountSteamPlayer();
 
-                int countNoSteam = BasePlayer.activePlayerList.Count - count;
+        //        int countNoSteam = BasePlayer.activePlayerList.Count - count;
 
-                string strCountNoSteam = "ki" + BasePlayer.activePlayerList.Count;
-                string strHasNoSteamNew = "kdz";
-                string strHasNoSteam = "ki";
-                string strCountGs = "fl" + countNoSteam;
-
-
-                string tags = "," + strHasNoSteamNew + "," + strHasNoSteam + "," + strCountNoSteam + "," + strCountGs;
+        //        string strCountNoSteam = "ki" + BasePlayer.activePlayerList.Count;
+        //        string strHasNoSteamNew = "kdz";
+        //        string strHasNoSteam = "ki";
+        //        string strCountGs = "fl" + countNoSteam;
 
 
-                __result += tags;
-            }
-        }
+        //        string tags = "," + strHasNoSteamNew + "," + strHasNoSteam + "," + strCountNoSteam + "," + strCountGs;
+
+
+        //        __result += tags;
+        //    }
+        //}
 
         [HarmonyPatch(typeof(Bootstrap), nameof(Bootstrap.Init_Tier0))]
         internal static class Init_Tier0_Patch
