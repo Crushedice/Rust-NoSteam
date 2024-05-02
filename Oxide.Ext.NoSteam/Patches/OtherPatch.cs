@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using AppServer = CompanionServer.Server;
 
@@ -24,7 +24,7 @@ namespace Oxide.Ext.NoSteam.Patches
             [HarmonyPrefix]
             public static bool Prefix()
             {
-                ConVar.App.port = -1;
+                //ConVar.App.port = -1;
                 return false;
             }
         }

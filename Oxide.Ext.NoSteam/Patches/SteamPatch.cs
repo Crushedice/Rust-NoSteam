@@ -1,5 +1,5 @@
 ﻿using ConVar;
-using Harmony;
+using HarmonyLib;
 using Oxide.Core;
 using Oxide.Ext.NoSteam.Utils;
 using Oxide.Ext.NoSteam.Utils.Steam;
@@ -83,12 +83,16 @@ namespace Oxide.Ext.NoSteam.Patches
                 if (Rust.Defines.appID == 480)
                     return false;
 
-                if (Core.CheckIsSteamConnection(msg.connection) == false)
+                if (!Core.CheckIsSteamConnection(msg.connection))
                 {
                     return false;
                 }
-
+                else if (Core.CheckIsSteamConnection(msg.connection))
+                {
+                    return true;
+                }
                 return true;
+
             }
         }
 
@@ -199,6 +203,7 @@ namespace Oxide.Ext.NoSteam.Patches
                 }
                 else
                 {
+                    
                     StatusPlayers[steamID] = __result;
                 }
             }

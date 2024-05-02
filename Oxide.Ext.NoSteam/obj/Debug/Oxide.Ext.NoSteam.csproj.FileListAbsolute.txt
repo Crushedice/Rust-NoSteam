@@ -1,0 +1,7 @@
+G:\Rust-NoSteam-master\Oxide.Ext.NoSteam\obj\Debug\Oxide.Ext.NoSteam.csproj.AssemblyReference.cache
+G:\Rust-NoSteam-master\Oxide.Ext.NoSteam\obj\Debug\Oxide.Ext.NoSteam.csproj.CoreCompileInputs.cache
+G:\Devs\Rust\Servers\rustserver2\RustDedicated_Data\Managed\Oxide.Ext.NoSteam.dll
+G:\Devs\Rust\Servers\rustserver2\RustDedicated_Data\Managed\Oxide.Ext.NoSteam.pdb
+G:\Rust-NoSteam-master\Oxide.Ext.NoSteam\obj\Debug\Oxide.Ext.NoSteam.dll
+G:\Rust-NoSteam-master\Oxide.Ext.NoSteam\obj\Debug\Oxide.Ext.NoSteam.pdb
+G:\Rust-NoSteam-master\Oxide.Ext.NoSteam\obj\Debug\Oxide.Ex.809C8856.Up2Date

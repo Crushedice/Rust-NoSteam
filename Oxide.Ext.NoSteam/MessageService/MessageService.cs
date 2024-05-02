@@ -1,78 +1,78 @@
-﻿using Oxide.Core;
-using Oxide.Core.Libraries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿//using Oxide.Core;
+//using Oxide.Core.Libraries;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Reflection;
 
-namespace Oxide.Ext.NoSteam.Language
-{
-    internal static class MessageService
-    {
-        private static Lang Lang;
+//namespace Oxide.Ext.NoSteam.Language
+//{
+//    internal static class MessageService
+//    {
+//        private static Lang Lang;
 
-        private static List<Message> MessagesList;
+//        private static List<Message> MessagesList;
 
         
-        static MessageService()
-        {
-            InitLocals();
-        }
+//        static MessageService()
+//        {
+//            InitLocals();
+//        }
 
-        private static void InitLocals()
-        {
-            Lang = Interface.Oxide.GetLibrary<Lang>(null);
-            MessagesList = new List<Message>();
+//        private static void InitLocals()
+//        {
+//            Lang = Interface.Oxide.GetLibrary<Lang>(null);
+//            MessagesList = new List<Message>();
 
-            ParseMessages();
+//            ParseMessages();
 
-        }
+//        }
 
-        internal static string Get(ulong userId, string id)
-        {
-            string language = Lang.GetLanguage(userId.ToString());
+//        internal static string Get(ulong userId, string id)
+//        {
+//            string language = Lang.GetLanguage(userId.ToString());
 
-            var message = MessagesList.First(x => x.Id == id);
+//            var message = MessagesList.First(x => x.Id == id);
 
-            return message.Get(language);
-        }
+//            return message.Get(language);
+//        }
 
-        internal static string GetEng(ulong userId, string id)
-        {
-            var message = MessagesList.First(x => x.Id == id);
+//        internal static string GetEng(ulong userId, string id)
+//        {
+//            var message = MessagesList.First(x => x.Id == id);
 
-            return message.Get("eng");
-        }
+//            return message.Get("eng");
+//        }
 
-        private static void ParseMessages()
-        {
-            MessagesList.Add(new Message(nameof(Messages.AdvertMessage), "Это сообщение видят только пираты. \nСервер использует NoSteam fork by I4IGO. \n",
+//        private static void ParseMessages()
+//        {
+//            MessagesList.Add(new Message(nameof(Messages.AdvertMessage), "Это сообщение видят только пираты. \nСервер использует NoSteam fork by I4IGO. \n",
 
-                    "This msg see only cracked players. \nServer uses NoSteam fork by I4IGO. \n"));
-        }
+//                    "This msg see only cracked players. \nServer uses NoSteam fork by I4IGO. \n"));
+//        }
 
-        internal class Message
-        {
-            internal string Id { get; set; }
+//        internal class Message
+//        {
+//            internal string Id { get; set; }
 
-            internal string TextRu { get; set; }
+//            internal string TextRu { get; set; }
 
-            internal string TextEng { get; set; }
+//            internal string TextEng { get; set; }
 
-            public Message(string id, string textRu, string textEng)
-            {
-                Id = id;
-                TextRu = textRu;
-                TextEng = textEng;
-            }
+//            public Message(string id, string textRu, string textEng)
+//            {
+//                Id = id;
+//                TextRu = textRu;
+//                TextEng = textEng;
+//            }
 
-            internal string Get(string language)
-            {
-                if (language == "ru")
-                    return TextRu;
+//            internal string Get(string language)
+//            {
+//                if (language == "ru")
+//                    return TextRu;
 
-                return TextEng;
-            }
-        }
-    }
-}
+//                return TextEng;
+//            }
+//        }
+//    }
+//}
