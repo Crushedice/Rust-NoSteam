@@ -14,12 +14,12 @@ namespace Oxide.Ext.NoSteam
     {
         static Core()
         {
-            StatusPlayers = new Dictionary<ulong, BeginAuthResult>();
+            StatusPlayers = new Dictionary<ulong, Steamworks.BeginAuthResult>();
         }
-        internal static HarmonyLib.Harmony HarmonyInstance;
+        internal static Harmony HarmonyInstance;
 
 
-        internal static readonly Dictionary<ulong, BeginAuthResult> StatusPlayers;
+        internal static readonly Dictionary<ulong, Steamworks.BeginAuthResult> StatusPlayers;
 
         internal static void Start()
         {
@@ -84,7 +84,7 @@ namespace Oxide.Ext.NoSteam
             if (StatusPlayers.ContainsKey(userid) == false)
                 return false;
 
-            return StatusPlayers[userid] == BeginAuthResult.OK;
+            return StatusPlayers[userid] == Steamworks.BeginAuthResult.OK;
         }
 
         internal static bool CheckIsValidConnection(ulong userid, SteamTicket steamTicket)
@@ -95,8 +95,8 @@ namespace Oxide.Ext.NoSteam
             bool authResult = false;
             switch (StatusPlayers[userid])
             {
-                case BeginAuthResult.OK:
-                case BeginAuthResult.GameMismatch:
+                case Steamworks.BeginAuthResult.OK:
+                case Steamworks.BeginAuthResult.GameMismatch:
                     authResult = true;
                     break;
             }

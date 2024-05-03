@@ -17,7 +17,7 @@ namespace Oxide.Ext.NoSteam.Patches
     internal static class SteamPatch
     {
        
-        private static Dictionary<ulong, BeginAuthResult> StatusPlayers => Core.StatusPlayers;
+        private static Dictionary<ulong, Steamworks.BeginAuthResult> StatusPlayers => Core.StatusPlayers;
 
         internal static void PatchSteamBeginPlayer()
         {
@@ -190,7 +190,7 @@ namespace Oxide.Ext.NoSteam.Patches
         internal static class SteamPlatformBeginPlayer2
         {
             [HarmonyPostfix]
-            public static void HarmonyPostfix(IntPtr pAuthTicket, int cbAuthTicket, SteamId steamID, ref BeginAuthResult __result)
+            public static void HarmonyPostfix(IntPtr pAuthTicket, int cbAuthTicket, SteamId steamID, ref Steamworks.BeginAuthResult __result)
             {
                 if (NoSteamExtension.DEBUG)
                 {
