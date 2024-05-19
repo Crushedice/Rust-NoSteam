@@ -30,7 +30,7 @@ namespace Oxide.Ext.NoSteam
 
         public override VersionNumber Version => new VersionNumber(2, 2, 2);
 
-        public override string Author => "Kaidoz";
+        public override string Author => "Sensais/Kaidoz";
 
         public static NoSteamExtension Instance { get; private set; }
 
@@ -41,8 +41,8 @@ namespace Oxide.Ext.NoSteam
 
             LoadConfig();
 
-            if (Utils.Config.configData.EnabledAutoUpdate)
-                Update();
+            //if (Utils.Config.configData.EnabledAutoUpdate)
+            //    Update();
 
             _loaded = true;
             Loader.NoSteam.InitPlugin();
@@ -55,49 +55,49 @@ namespace Oxide.Ext.NoSteam
             Rust.Defines.appID = Utils.Config.configData.AppId != null ? (uint)Utils.Config.configData.AppId : 252490;
         }
 
-        private void Update()
-        {
-            var webClient = new WebClient();
+        //private void Update()
+        //{
+        //    var webClient = new WebClient();
 
-            var version = GetVersion(webClient);
+        //    var version = GetVersion(webClient);
 
-            Logger.Print($"Check update NoSteam. Remote version is {version}...");
+        //    Logger.Print($"Check update NoSteam. Remote version is {version}...");
 
-            if (CheckIsOutdated(version))
-            {
-                Logger.Print($"Updating NoSteam[{version}]...");
+        //    if (CheckIsOutdated(version))
+        //    {
+        //        Logger.Print($"Updating NoSteam[{version}]...");
 
-                DownloadPlugin(webClient);
+        //        DownloadPlugin(webClient);
 
-                Logger.Print("Restarting server...");
+        //        Logger.Print("Restarting server...");
 
-                ServerMgr.RestartServer("Restarting", 0);
+        //        ServerMgr.RestartServer("Restarting", 0);
 
-                Run(Option.Server, "restart 0 update-nosteam");
+        //        Run(Option.Server, "restart 0 update-nosteam");
 
-                Environment.Exit(0);
-            }
-        }
+        //        Environment.Exit(0);
+        //    }
+        //}
 
-        private string GetVersion(WebClient webClient)
-        {
-            string urlVersion = "https://raw.githubusercontent.com/Kaidoz/Rust-NoSteam/master/Build/version.txt";
+        //private string GetVersion(WebClient webClient)
+        //{
+        //    string urlVersion = "https://raw.githubusercontent.com/Kaidoz/Rust-NoSteam/master/Build/version.txt";
 
-            string version = webClient.DownloadString(urlVersion);
+        //    string version = webClient.DownloadString(urlVersion);
 
-            return version;
-        }
+        //    return version;
+        //}
 
-        private void DownloadPlugin(WebClient webClient)
-        {
-            string urlDll = "https://raw.githubusercontent.com/Kaidoz/Rust-NoSteam/master/Build/Oxide.Ext.NoSteam.dll";
+        //private void DownloadPlugin(WebClient webClient)
+        //{
+        //    string urlDll = "https://raw.githubusercontent.com/Kaidoz/Rust-NoSteam/master/Build/Oxide.Ext.NoSteam.dll";
 
-            byte[] data = webClient.DownloadData(urlDll);
+        //    byte[] data = webClient.DownloadData(urlDll);
 
-            string pathToDll = Path.Combine(Interface.GetMod().ExtensionDirectory, "Oxide.Ext.NoSteam.dll");
+        //    string pathToDll = Path.Combine(Interface.GetMod().ExtensionDirectory, "Oxide.Ext.NoSteam.dll");
 
-            File.WriteAllBytes(pathToDll, data);
-        }
+        //    File.WriteAllBytes(pathToDll, data);
+        //}
 
         private bool CheckIsOutdated(string version)
         {
