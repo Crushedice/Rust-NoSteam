@@ -1,4 +1,5 @@
-﻿using ConVar;
+﻿
+using ConVar;
 using HarmonyLib;
 using Oxide.Core;
 using Oxide.Ext.NoSteam.Utils;
@@ -7,8 +8,10 @@ using Oxide.Ext.NoSteam.Utils.Steam.Steamworks;
 using Rust.Platform.Steam;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -17,7 +20,7 @@ namespace Oxide.Ext.NoSteam.Patches
     internal static class SteamPatch
     {
        
-        private static Dictionary<ulong, Steamworks.BeginAuthResult> StatusPlayers => Core.StatusPlayers;
+        private static Dictionary<ulong, BeginAuthResult> StatusPlayers => Core.StatusPlayers;
 
         internal static void PatchSteamBeginPlayer()
         {
@@ -107,6 +110,7 @@ namespace Oxide.Ext.NoSteam.Patches
                     return false;
                 }
 
+                UnityEngine.Debug.Log("SteamPlatformUpdatePlayer");
                 return true;
             }
         }
@@ -119,6 +123,7 @@ namespace Oxide.Ext.NoSteam.Patches
             {
                 __result = true;
 
+                UnityEngine.Debug.Log("Auth_SteamPatch");
                 return false;
             }
         }
@@ -137,6 +142,7 @@ namespace Oxide.Ext.NoSteam.Patches
                 if (StatusPlayers.ContainsKey(userId))
                     StatusPlayers.Remove(userId);
 
+                UnityEngine.Debug.Log("SteamPlatformEndPlayer");
                 return result;
             }
         }
@@ -153,14 +159,14 @@ namespace Oxide.Ext.NoSteam.Patches
 
                 if (Core.CheckIsValidConnection(userId, ticket) == false)
                 {
-                    __result = false;
+                    //__result = false;
 
                     if (NoSteamExtension.DEBUG)
                     {
                         Logger.Print("CheckIsValidConnection: " + userId);
                     }
 
-                    return;
+                    //return;
                 }
 
                 bool IsLicense = ticket.clientVersion == SteamTicket.ClientVersion.Steam;
@@ -168,6 +174,12 @@ namespace Oxide.Ext.NoSteam.Patches
                 var connections = ConnectionAuth.m_AuthConnection;
                 var connection = connections.First(x => x.userid == userId);
 
+                //if (!IsLicense)
+                //{
+                //    __result = false;
+                //    ConnectionAuth.Reject(connection, "Download License", null);
+                //    return;
+                //}
                 connection.authStatusSteam = "ok";
                 connection.authStatusNexus = "ok";
                 connection.authStatusEAC = "ok";
@@ -176,16 +188,19 @@ namespace Oxide.Ext.NoSteam.Patches
 
                 object reason = Interface.CallHook("OnBeginPlayerSession", connection, IsLicense);
 
+                UnityEngine.Debug.Log("SteamPlatformBeginPlayer");
                 if (reason == null)
                 {
                     return;
                 }
+
 
                 ConnectionAuth.Reject(connection, reason.ToString(), null);
 
                 return;
             }
         }
+
 
         internal static class SteamPlatformBeginPlayer2
         {
@@ -196,16 +211,17 @@ namespace Oxide.Ext.NoSteam.Patches
                 {
                     Logger.Print("SteamPlatformBeginPlayer2: " + steamID + " " + __result);
                 }
+                
 
                 if (StatusPlayers.ContainsKey(steamID) == false)
                 {
-                    StatusPlayers.Add(steamID, __result);
+                    StatusPlayers.Add(steamID, (BeginAuthResult)__result);
                 }
                 else
                 {
-                    
-                    StatusPlayers[steamID] = __result;
+                    StatusPlayers[steamID] = (BeginAuthResult)__result;
                 }
+                UnityEngine.Debug.Log("SteamPlatformBeginPlayer2");
             }
         }
 
@@ -220,7 +236,7 @@ namespace Oxide.Ext.NoSteam.Patches
                     __result = Task.FromResult(true);
                     return false;
                 }
-
+                UnityEngine.Debug.Log("SteamPlatformLoadPlayerStats");
                 return true;
             }
         }
