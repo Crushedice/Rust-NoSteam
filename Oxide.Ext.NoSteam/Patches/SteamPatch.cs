@@ -110,7 +110,6 @@ namespace Oxide.Ext.NoSteam.Patches
                     return false;
                 }
 
-                UnityEngine.Debug.Log("SteamPlatformUpdatePlayer");
                 return true;
             }
         }
@@ -123,7 +122,6 @@ namespace Oxide.Ext.NoSteam.Patches
             {
                 __result = true;
 
-                UnityEngine.Debug.Log("Auth_SteamPatch");
                 return false;
             }
         }
@@ -142,7 +140,6 @@ namespace Oxide.Ext.NoSteam.Patches
                 if (StatusPlayers.ContainsKey(userId))
                     StatusPlayers.Remove(userId);
 
-                UnityEngine.Debug.Log("SteamPlatformEndPlayer");
                 return result;
             }
         }
@@ -188,7 +185,6 @@ namespace Oxide.Ext.NoSteam.Patches
 
                 object reason = Interface.CallHook("OnBeginPlayerSession", connection, IsLicense);
 
-                UnityEngine.Debug.Log("SteamPlatformBeginPlayer");
                 if (reason == null)
                 {
                     return;
@@ -221,7 +217,6 @@ namespace Oxide.Ext.NoSteam.Patches
                 {
                     StatusPlayers[steamID] = (BeginAuthResult)__result;
                 }
-                UnityEngine.Debug.Log("SteamPlatformBeginPlayer2");
             }
         }
 
@@ -236,7 +231,6 @@ namespace Oxide.Ext.NoSteam.Patches
                     __result = Task.FromResult(true);
                     return false;
                 }
-                UnityEngine.Debug.Log("SteamPlatformLoadPlayerStats");
                 return true;
             }
         }
